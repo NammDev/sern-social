@@ -1,11 +1,9 @@
 import Navbar from '../components/Navbar'
-import classNames from 'classnames/bind'
-import styles from './MainLayout.module.scss'
-
-const cx = classNames.bind(styles)
+import { useContext } from 'react'
+import { DarkModeContext } from '~/context/darkModeContext'
 
 function MainLayout({ children }) {
-  const darkMode = false
+  const { darkMode } = useContext(DarkModeContext)
   return (
     <div className={`theme-${darkMode ? 'dark' : 'light'}`}>
       <Navbar />
