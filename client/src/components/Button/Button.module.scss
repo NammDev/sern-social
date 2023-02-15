@@ -1,0 +1,53 @@
+@import 'src/components/Style/_variables.scss';
+
+.wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  white-space: nowrap;
+  font-family: $font-primary;
+  font-weight: 400;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  & + .wrapper {
+    margin-left: 16px;
+  }
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}
+
+svg + .title,
+.title + svg {
+  margin-left: 8px;
+}
+
+.primary {
+  min-width: 100px;
+  min-height: 36px;
+  padding: 10px;
+  border: none;
+  background-color: teal;
+  color: white;
+  &:hover {
+    background: rgb(8, 194, 194);
+  }
+}
+
+.secondary {
+  width: max-content;
+  padding: 10px 20px;
+  background-color: white;
+  border: 1px solid teal;
+  color: teal;
+
+  &:hover {
+    border: 1px solid white;
+    background-color: $lightGreen;
+    color: black;
+  }
+}
