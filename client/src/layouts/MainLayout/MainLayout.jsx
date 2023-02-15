@@ -1,17 +1,18 @@
 import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
 import classNames from 'classnames/bind'
 import styles from './MainLayout.module.scss'
 
 const cx = classNames.bind(styles)
 
 function MainLayout({ children }) {
+  const darkMode = false
   return (
-    <div className={cx('main')}>
-      <div className={cx('container')}>
-        <Navbar />
-        {children}
-        <Footer />
+    <div className={`theme-${darkMode ? 'dark' : 'light'}`}>
+      <Navbar />
+      <div style={{ display: 'flex' }}>
+        <div>Left Bar</div>
+        <div style={{ flex: 6 }}>{children}</div>
+        <div>Right Bar</div>
       </div>
     </div>
   )

@@ -1,11 +1,8 @@
-import classNames from 'classnames/bind'
-import styles from './Home.module.scss'
-
-const cx = classNames.bind(styles)
+import './Home.scss'
 
 function Home() {
   return (
-    <div className={cx('home')}>
+    <div className='home'>
       <div>Stories</div>
       <div>Share</div>
       <div>Posts</div>
