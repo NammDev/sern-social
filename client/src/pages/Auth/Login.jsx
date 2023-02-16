@@ -1,30 +1,33 @@
 import { Link, useNavigate } from 'react-router-dom'
-import classNames from 'classnames/bind'
-import styles from './Auth.module.scss'
 import { useContext, useState } from 'react'
 import Button from '~/components/Button/Button'
 import { AuthContext } from '~/context/authContext'
-
-const cx = classNames.bind(styles)
+import './login.scss'
 
 function Login() {
   const navigate = useNavigate()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [inputs, setInputs] = useState({
+    username: '',
+    password: '',
+  })
   const [err, setErr] = useState(null)
+
+  const handleChange = (e) => {
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  }
 
   const { login } = useContext(AuthContext)
 
   const postApi = async () => {
     try {
-      await login(email, password)
+      await login(inputs)
       navigate('/')
     } catch (err) {
       setErr(err.response.data)
     }
   }
 
-  const validate = (email, password) => {
+  const validate = ({ email, password }) => {
     const isValidateEmail = email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
     const isValidatePassword = password
     if (!isValidateEmail) setErr('Failed Email')
@@ -34,38 +37,33 @@ function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault()
-    validate(email, password) && postApi()
+    validate(inputs) && postApi()
   }
 
   return (
-    <div className={cx('auth')}>
-      <h1>Login</h1>
-      <form>
-        <input
-          required
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value)
-          }}
-        />
-        <input
-          required
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value)
-          }}
-          autoComplete='off'
-        />
-        <Button onClick={handleLogin} text='Login' />
-        {err && <p>{err}</p>}
-        <span>
-          Don't you have an account? <Link to='/register'>Register</Link>
-        </span>
-      </form>
+    <div className='login'>
+      <div className='card'>
+        <div className='left'>
+          <h1>Hello World.</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum, alias totam numquam
+            ipsa exercitationem dignissimos, error nam, consequatur.
+          </p>
+          <span>Don't you have an account?</span>
+          <Link to='/register'>
+            <button>Register</button>
+          </Link>
+        </div>
+        <div className='right'>
+          <h1>Login</h1>
+          <form>
+            <input type='text' placeholder='Username' name='username' onChange={handleChange} />
+            <input type='password' placeholder='Password' name='password' onChange={handleChange} />
+            {err && err}
+            <button onClick={handleLogin}>Login</button>
+          </form>
+        </div>
+      </div>
     </div>
   )
 }

@@ -1,6 +1,8 @@
-import Navbar from '../components/Navbar'
+import Navbar from '../components/Navbar/Navbar'
 import { useContext } from 'react'
 import { DarkModeContext } from '~/context/darkModeContext'
+import LeftBar from '../components/LeftBar/LeftBar'
+import RightBar from '../components/RightBar/RightBar'
 
 function MainLayout({ children }) {
   const { darkMode } = useContext(DarkModeContext)
@@ -8,9 +10,9 @@ function MainLayout({ children }) {
     <div className={`theme-${darkMode ? 'dark' : 'light'}`}>
       <Navbar />
       <div style={{ display: 'flex' }}>
-        <div>Left Bar</div>
+        <LeftBar />
         <div style={{ flex: 6 }}>{children}</div>
-        <div>Right Bar</div>
+        <RightBar />
       </div>
     </div>
   )
