@@ -66,7 +66,13 @@ function Register() {
           <form>
             <input type='text' placeholder='Username' name='username' onChange={handleChange} />
             <input type='email' placeholder='Email' name='email' onChange={handleChange} />
-            <input type='password' placeholder='Password' name='password' onChange={handleChange} />
+            <input
+              type='password'
+              autoComplete='off'
+              placeholder='Password'
+              name='password'
+              onChange={handleChange}
+            />
             <input type='text' placeholder='Name' name='name' onChange={handleChange} />
             {err && err}
             <button onClick={handleRegister}>Register</button>

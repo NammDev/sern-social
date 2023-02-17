@@ -1,17 +1,18 @@
 import axios from '~/utils/axiosCustomize'
 
-export const postLogin = async (email, password) => {
+export const postLogin = async (username, password) => {
   const res = await axios.post(`/api/auth/login`, {
-    email,
+    username,
     password,
   })
   return res
 }
 
-export const postRegister = async (email, username, password) => {
+export const postRegister = async ({ email, username, name, password }) => {
   const res = await axios.post(`/api/auth/register`, {
     email,
     username,
+    name,
     password,
   })
   return res

@@ -1,9 +1,9 @@
 import db from '../config/db.js'
 
-export const getUserByEmail = (email) =>
+export const getUserByUsername = (username) =>
   new Promise((resolve, reject) => {
-    const q = 'SELECT * FROM user WHERE email = ?'
-    db.query(q, email, (err, rows) => {
+    const q = 'SELECT * FROM users WHERE username = ?'
+    db.query(q, username, (err, rows) => {
       if (err) {
         reject(err)
       } else resolve(rows)
@@ -12,7 +12,7 @@ export const getUserByEmail = (email) =>
 
 export const getUserByEmailName = (email, username) =>
   new Promise((resolve, reject) => {
-    const q = 'SELECT * FROM user WHERE email = ? OR username = ?'
+    const q = 'SELECT * FROM users WHERE email = ? OR username = ?'
     db.query(q, [email, username], (err, rows) => {
       if (err) {
         reject(err)
@@ -20,12 +20,13 @@ export const getUserByEmailName = (email, username) =>
     })
   })
 
-export const createNewUser = (username, email, hash) =>
+export const createNewUser = (username, email, name, hash) =>
   new Promise((resolve, reject) => {
-    const q = `INSERT INTO user SET ?`
+    const q = `INSERT INTO users SET ?`
     const data = {
       username,
       email,
+      name,
       password: hash,
     }
     db.query(q, data, (err, rows) => {
@@ -37,7 +38,7 @@ export const createNewUser = (username, email, hash) =>
 
 export const getAllUsers = () =>
   new Promise((resolve, reject) => {
-    const q = 'SELECT * FROM user'
+    const q = 'SELECT * FROM users'
     db.query(q, (err, rows) => {
       if (err) {
         return reject(err)

@@ -27,17 +27,17 @@ function Login() {
     }
   }
 
-  const validate = ({ email, password }) => {
-    const isValidateEmail = email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
-    const isValidatePassword = password
-    if (!isValidateEmail) setErr('Failed Email')
-    if (!isValidatePassword) setErr('Please input your Password')
-    return isValidateEmail && isValidatePassword
-  }
+  // const validate = ({ email, password }) => {
+  //   const isValidateEmail = email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
+  //   const isValidatePassword = password
+  //   if (!isValidateEmail) setErr('Failed Email')
+  //   if (!isValidatePassword) setErr('Please input your Password')
+  //   return isValidateEmail && isValidatePassword
+  // }
 
   const handleLogin = (e) => {
     e.preventDefault()
-    validate(inputs) && postApi()
+    postApi()
   }
 
   return (
@@ -58,7 +58,13 @@ function Login() {
           <h1>Login</h1>
           <form>
             <input type='text' placeholder='Username' name='username' onChange={handleChange} />
-            <input type='password' placeholder='Password' name='password' onChange={handleChange} />
+            <input
+              type='password'
+              autoComplete='off'
+              placeholder='Password'
+              name='password'
+              onChange={handleChange}
+            />
             {err && err}
             <button onClick={handleLogin}>Login</button>
           </form>

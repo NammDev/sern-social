@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs'
-import { getUserByEmail, getUserByEmailName, createNewUser } from '../services/authService.js'
+import { getUserByUsername, getUserByEmailName, createNewUser } from '../services/authService.js'
 import { jwtGeneratorAccess, jwtGeneratorRefresh } from '../utils/jwtGenerator.js'
 import { catchError } from '../middlewares/authorize.js'
 import dotenv from 'dotenv'
@@ -11,7 +11,7 @@ let refreshTokens = []
 export const register = async (req, res) => {
   try {
     // 1. Destructure the req.body (name, email, password)
-    const { username, email, password } = req.body
+    const { username, email, password, name } = req.body
 
     // 2. Check if user exist (if false throw error)
     const user = await getUserByEmailName(email, username)
@@ -22,7 +22,7 @@ export const register = async (req, res) => {
     const hash = await bcrypt.hash(password, salt)
 
     // 4. Insert the new user in side our database
-    await createNewUser(username, email, hash)
+    await createNewUser(username, email, name, hash)
 
     // 5. Send respond
     return res.status(200).json('User has been created.')
@@ -34,11 +34,11 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     // 1. Destructure the req.body (email, password)
-    const { email, password } = req.body
+    const { username, password } = req.body
 
     // 2. Check if user exist (if false throw error)
-    const user = await getUserByEmail(email)
-    if (user.length === 0) return res.status(404).json('Email is notfound!')
+    const user = await getUserByUsername(username)
+    if (user.length === 0) return res.status(404).json('Username is notfound!')
 
     // 3. Check if input password is same as database password
     const validPassword = await bcrypt.compare(password, user[0].password)
@@ -52,8 +52,16 @@ export const login = async (req, res) => {
     refreshTokens.push(refreshToken)
 
     // 5. Send respond
-    const { id, username, img } = user[0]
-    res.json({ accessToken, refreshToken, id, username, email: user[0].email, img })
+    const { id, name, img } = user[0]
+    res.json({
+      accessToken,
+      refreshToken,
+      id,
+      username: user[0].username,
+      name,
+      email: user[0].email,
+      img,
+    })
   } catch (error) {
     console.log(error)
     res.status(500).json(error)

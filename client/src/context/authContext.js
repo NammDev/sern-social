@@ -7,8 +7,8 @@ export const AuthContext = createContext()
 export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(getUser() || null)
 
-  const login = async (email, password) => {
-    const data = await postLogin(email, password)
+  const login = async ({ username, password }) => {
+    const data = await postLogin(username, password)
     setCurrentUser(data)
   }
 
