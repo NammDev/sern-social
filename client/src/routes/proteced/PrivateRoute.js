@@ -3,8 +3,7 @@ import { AuthContext } from '~/context/authContext'
 import { useContext } from 'react'
 
 function PrivateRoute({ children }) {
-  // const { currentUser } = useContext(AuthContext)
-  const currentUser = true
+  const { currentUser } = useContext(AuthContext)
   if (!currentUser) {
     return <Navigate to={`/login`} />
   }
