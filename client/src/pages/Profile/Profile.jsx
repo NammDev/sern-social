@@ -11,12 +11,13 @@ import Posts from '~/components/Posts/Posts'
 import Update from '~/components/Update/Update'
 import { useState, useContext } from 'react'
 import { AuthContext } from '~/context/authContext'
+import { useLocation } from 'react-router-dom'
 
 const Profile = () => {
   const [openUpdate, setOpenUpdate] = useState(false)
   const { currentUser } = useContext(AuthContext)
 
-  // const userId = parseInt(useLocation().pathname.split('/')[2])
+  const userId = parseInt(useLocation().pathname.split('/')[2])
 
   // const { isLoading, error, data } = useQuery(['user'], () =>
   //   makeRequest.get('/users/find/' + userId).then((res) => {
@@ -25,7 +26,6 @@ const Profile = () => {
   // )
   const isLoading = false
   const rIsLoading = false
-  const userId = 2
   const data = {
     coverPic:
       'https://images.unsplash.com/photo-1500964757637-c85e8a162699?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2103&q=80',
