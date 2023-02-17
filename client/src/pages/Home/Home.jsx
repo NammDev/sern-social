@@ -1,14 +1,14 @@
+import Stories from '~/components/Stories/Stories'
 import './Home.scss'
+import Share from '~/components/Share/Share'
+import Posts from '~/components/Posts/Posts'
 
 function Home() {
   return (
     <div className='home'>
-      <div>Stories</div>
-      <div>Share</div>
-      <div>Posts</div>
-      {/* <Stories />
+      <Stories />
       <Share />
-      <Posts /> */}
+      <Posts />
     </div>
   )
 }
