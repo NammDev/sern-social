@@ -1,6 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useContext, useState } from 'react'
-import Button from '~/components/Button/Button'
 import { AuthContext } from '~/context/authContext'
 import './login.scss'
 

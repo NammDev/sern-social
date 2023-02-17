@@ -6,14 +6,15 @@ import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import { Link } from 'react-router-dom'
 import Comments from '../Comments/Comments'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { AuthContext } from '~/context/authContext'
 import moment from 'moment'
 
 const Post = ({ post }) => {
   const [commentOpen, setCommentOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
-  //   const { currentUser } = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext)
 
   //   const { isLoading, error, data } = useQuery(['likes', post.id], () =>
   //     makeRequest.get('/likes?postId=' + post.id).then((res) => {
@@ -57,12 +58,6 @@ const Post = ({ post }) => {
 
   const isLoading = false
   const error = ''
-  const currentUser = {
-    id: 1,
-    profilePic:
-      'https://images.unsplash.com/photo-1676521898747-e4fa3b905e40?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-    name: 'Dich Phong',
-  }
 
   const data = [{ id: 1 }, { id: 2 }, { id: 4 }]
 

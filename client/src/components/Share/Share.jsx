@@ -20,13 +20,7 @@ const Share = () => {
   //   }
   // }
 
-  // const { currentUser } = useContext(AuthContext)
-
-  const currentUser = {
-    profilePic:
-      'https://images.unsplash.com/photo-1676521898747-e4fa3b905e40?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-    name: 'Dich Phong',
-  }
+  const { currentUser } = useContext(AuthContext)
 
   // const queryClient = useQueryClient()
 
@@ -56,7 +50,6 @@ const Share = () => {
       <div className='container'>
         <div className='top'>
           <div className='left'>
-            {/* <img src={'/upload/' + currentUser.profilePic} alt='' /> */}
             <img src={currentUser.profilePic} alt='' />
             <input
               type='text'

@@ -2,7 +2,6 @@ import './profile.scss'
 import FacebookTwoToneIcon from '@mui/icons-material/FacebookTwoTone'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import InstagramIcon from '@mui/icons-material/Instagram'
-import PinterestIcon from '@mui/icons-material/Pinterest'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import PlaceIcon from '@mui/icons-material/Place'
 import LanguageIcon from '@mui/icons-material/Language'
@@ -10,11 +9,12 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import Posts from '~/components/Posts/Posts'
 import Update from '~/components/Update/Update'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { AuthContext } from '~/context/authContext'
 
 const Profile = () => {
   const [openUpdate, setOpenUpdate] = useState(false)
-  // const { currentUser } = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext)
 
   // const userId = parseInt(useLocation().pathname.split('/')[2])
 
@@ -26,7 +26,6 @@ const Profile = () => {
   const isLoading = false
   const rIsLoading = false
   const userId = 2
-  const currentUser = { id: 2 }
   const data = {
     coverPic:
       'https://images.unsplash.com/photo-1500964757637-c85e8a162699?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2103&q=80',
@@ -38,8 +37,6 @@ const Profile = () => {
   }
 
   const relationshipData = [1, 2]
-
-  // const isLoading, error, data , risLoading, relationshipData, currentUser
 
   // const { isLoading: rIsLoading, data: relationshipData } = useQuery(['relationship'], () =>
   //   makeRequest.get('/relationships?followedUserId=' + userId).then((res) => {

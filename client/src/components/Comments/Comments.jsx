@@ -6,7 +6,7 @@ import moment from 'moment'
 
 const Comments = ({ postId }) => {
   const [desc, setDesc] = useState('')
-  // const { currentUser } = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext)
 
   // const { isLoading, error, data } = useQuery(['comments'], () =>
   //   makeRequest.get('/comments?postId=' + postId).then((res) => {
@@ -15,12 +15,6 @@ const Comments = ({ postId }) => {
   // )
 
   // const queryClient = useQueryClient()
-
-  const currentUser = {
-    profilePic:
-      'https://images.unsplash.com/photo-1676521898747-e4fa3b905e40?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-    name: 'Dich Phong',
-  }
 
   const isLoading = false
   const error = ''

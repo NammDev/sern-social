@@ -39,15 +39,8 @@ const Stories = () => {
   return (
     <div className='stories'>
       <div className='story'>
-        {/* <img src={'/upload/' + currentUser.profilePic} alt='' />
-        <span>{currentUser.name}</span> */}
-        <img
-          src={
-            'https://images.unsplash.com/photo-1676521898747-e4fa3b905e40?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
-          }
-          alt=''
-        />
-        <span>Dich Phong</span>
+        <img src={currentUser.profilePic} alt='' />
+        <span>{currentUser.name}</span>
         <button>+</button>
       </div>
       {error

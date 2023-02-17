@@ -13,21 +13,16 @@ import Tutorials from '~/assets/11.png'
 import Courses from '~/assets/12.png'
 import Fund from '~/assets/13.png'
 import { useContext } from 'react'
+import { AuthContext } from '~/context/authContext'
 
 const LeftBar = () => {
-  //   const { currentUser } = useContext(AuthContext)
-  const currentUser = {
-    profilePic:
-      'https://images.unsplash.com/photo-1676521898747-e4fa3b905e40?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-    name: 'Dich Phong',
-  }
+  const { currentUser } = useContext(AuthContext)
 
   return (
     <div className='leftBar'>
       <div className='container'>
         <div className='menu'>
           <div className='user'>
-            {/* <img src={'/upload/' + currentUser.profilePic} alt='' /> */}
             <img src={currentUser.profilePic} alt='' />
             <span>{currentUser.name}</span>
           </div>
