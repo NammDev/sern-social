@@ -10,7 +10,7 @@ export const deletePost = async (id) => {
   return res
 }
 
-export const createPost = async (title, desc, cat, img, date) => {
-  const res = await axios.post(`/api/posts`, { title, desc, cat, img, date })
+export const createPost = async (newPost) => {
+  const res = await axios.post(`/api/posts`, newPost)
   return res
 }
