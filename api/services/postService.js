@@ -1,4 +1,5 @@
 import db from '../config/db.js'
+import moment from 'moment'
 
 export const getAllPosts = (id) =>
   new Promise((resolve, reject) => {
@@ -24,10 +25,10 @@ export const getAllPostsById = (id) =>
     })
   })
 
-export const addPostService = ({ title, desc, img, cat, date }, uid) =>
+export const addPostService = ({ desc, img }, uid) =>
   new Promise((resolve, reject) => {
-    const q = 'INSERT INTO post(`title`, `desc`, `img`, `cat`, `date`,`uid`) VALUES (?)'
-    const values = [title, desc, img, cat, date, uid]
+    const q = 'INSERT INTO posts(`desc`, `img`, `createdAt`, `userId`) VALUES (?)'
+    const values = [desc, img, moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'), uid]
     db.query(q, [values], (err, data) => {
       if (err) {
         reject(err)

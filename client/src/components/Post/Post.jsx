@@ -74,7 +74,7 @@ const Post = ({ post }) => {
               >
                 <span className='name'>{post.name}</span>
               </Link>
-              <span className='date'>{post.createdAt}</span>
+              <span className='date'>{moment(post.createdAt).fromNow()}</span>
             </div>
           </div>
           <MoreHorizIcon onClick={() => setMenuOpen(!menuOpen)} />
