@@ -25,17 +25,11 @@ const Share = () => {
     }
   }
 
-  const mutation = useMutation(
-    (newPost) => {
-      return createPost(newPost)
+  const mutation = useMutation((newPost) => createPost(newPost), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['posts'])
     },
-    {
-      onSuccess: () => {
-        // Invalidate and refetch
-        queryClient.invalidateQueries(['posts'])
-      },
-    }
-  )
+  })
 
   const handleClick = async (e) => {
     e.preventDefault()
